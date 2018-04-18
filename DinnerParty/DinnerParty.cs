@@ -16,16 +16,11 @@ namespace DinnerParty
         {
             if(healthyOption)
             {
-                CostOfBeveragesPerPerson = 5;
-
-                CostOfBeveragesPerPerson += CostOfFoodPerPerson;
-
+                CostOfBeveragesPerPerson = ((NumberOfPeople * 5) * 0.95M);
             }
             else
             {
-                CostOfBeveragesPerPerson = 20;
-
-                CostOfBeveragesPerPerson += CostOfFoodPerPerson;
+                CostOfBeveragesPerPerson = (NumberOfPeople * 20);
 
             }
 
@@ -33,10 +28,24 @@ namespace DinnerParty
 
         public void CalculateCostOfDecorations(bool fancyOption)
         {
+            if (fancyOption)
+            {
+                CostOfDecoration = (NumberOfPeople * 15) + 50.0M;
+            }
+            else
+            {
+                CostOfDecoration = (NumberOfPeople * 7.50M) + 30M;
+            }
 
         }
         public decimal CalculateCost()
         {
+            decimal wholePrice = (NumberOfPeople * CostOfFoodPerPerson) + CostOfDecoration + CostOfBeveragesPerPerson;
+
+
+            return wholePrice;
+
+
             
 
         }

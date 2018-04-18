@@ -21,7 +21,7 @@ namespace DinnerParty
             dinnerparty = new DinnerParty { NumberOfPeople = 5 };
             dinnerparty.SetHealthyOption(false);
             dinnerparty.CalculateCostOfDecorations(true);
-            DisplayDinnerPartyCost()
+            DisplayDinnerPartyCost();
         }
 
         public void DisplayDinnerPartyCost()
@@ -46,7 +46,7 @@ namespace DinnerParty
         private void healthyBox_CheckedChanged(object sender, EventArgs e)
         {
             dinnerparty.SetHealthyOption(healthyBox.Checked);
-            DisplayDinnerPartyCost()
+            DisplayDinnerPartyCost();
         }
     }
 }
