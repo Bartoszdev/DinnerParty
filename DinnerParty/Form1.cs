@@ -18,7 +18,7 @@ namespace DinnerParty
         {
             InitializeComponent();
 
-            dinnerparty = new DinnerParty { NumberOfPeople = 5 };
+            dinnerparty = new DinnerParty();
             dinnerparty.SetHealthyOption(false);
             dinnerparty.CalculateCostOfDecorations(true);
             DisplayDinnerPartyCost();
@@ -26,19 +26,20 @@ namespace DinnerParty
 
         public void DisplayDinnerPartyCost()
         {
-            decimal Cost = dinnerparty.CalculateCost();
+            decimal Cost = dinnerparty.CalculateCost(healthyBox.Checked);
             costLabel.Text = Cost.ToString("c");
 
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            dinnerparty.NumberOfPeople = (int)numericUpDown1.Value;
+            dinnerparty.SetPartyOptions((int)numericUpDown1.Value, fancyBox.Checked);
             DisplayDinnerPartyCost();
         }
 
         private void fancyBox_CheckedChanged(object sender, EventArgs e)
         {
+
             dinnerparty.CalculateCostOfDecorations(fancyBox.Checked);
             DisplayDinnerPartyCost();
         }

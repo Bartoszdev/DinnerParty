@@ -8,7 +8,7 @@ namespace DinnerParty
 {
     public class DinnerParty
     {
-        public int NumberOfPeople = 0;
+        private int NumberOfPeople = 0;
         decimal CostOfBeveragesPerPerson = 0.0M;
         decimal CostOfDecoration = 0.0M;
         public const int CostOfFoodPerPerson = 25;
@@ -16,11 +16,11 @@ namespace DinnerParty
         {
             if(healthyOption)
             {
-                CostOfBeveragesPerPerson = ((NumberOfPeople * 5) * 0.95M);
+                CostOfBeveragesPerPerson =  5.00M;
             }
             else
             {
-                CostOfBeveragesPerPerson = (NumberOfPeople * 20);
+                CostOfBeveragesPerPerson = 20.00M;
 
             }
 
@@ -38,10 +38,14 @@ namespace DinnerParty
             }
 
         }
-        public decimal CalculateCost()
+        public decimal CalculateCost(bool healthyOption)
         {
-            decimal wholePrice = (NumberOfPeople * CostOfFoodPerPerson) + CostOfDecoration + CostOfBeveragesPerPerson;
+            decimal wholePrice = CostOfDecoration + ((CostOfBeveragesPerPerson + CostOfFoodPerPerson ) * NumberOfPeople);
 
+            if (healthyOption)
+            {
+               return wholePrice * 0.95M;
+            }
 
             return wholePrice;
 
@@ -49,6 +53,18 @@ namespace DinnerParty
             
 
         }
+
+        public void SetPartyOptions(int people , bool fancy)
+        {
+            NumberOfPeople = people;
+            CalculateCostOfDecorations(fancy);
+        }
+
+        public int GetNumberofPeople(int people)
+        {
+            return NumberOfPeople;
+        }
+
 
     }
 }
