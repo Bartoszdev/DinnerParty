@@ -12,7 +12,6 @@ namespace DinnerParty
 {
     public partial class Form1 : Form
     {
-        
         DinnerParty dinnerparty;
         public Form1()
         {
@@ -28,7 +27,6 @@ namespace DinnerParty
         {
             decimal Cost = dinnerparty.CalculateCost(healthyBox.Checked);
             costLabel.Text = Cost.ToString("c");
-
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
@@ -39,7 +37,6 @@ namespace DinnerParty
 
         private void fancyBox_CheckedChanged(object sender, EventArgs e)
         {
-
             dinnerparty.CalculateCostOfDecorations(fancyBox.Checked);
             DisplayDinnerPartyCost();
         }

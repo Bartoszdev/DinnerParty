@@ -23,9 +23,7 @@ namespace DinnerParty
                 CostOfBeveragesPerPerson = 20.00M;
 
             }
-
         }
-
         public void CalculateCostOfDecorations(bool fancyOption)
         {
             if (fancyOption)
@@ -36,7 +34,6 @@ namespace DinnerParty
             {
                 CostOfDecoration = (NumberOfPeople * 7.50M) + 30M;
             }
-
         }
         public decimal CalculateCost(bool healthyOption)
         {
@@ -46,25 +43,12 @@ namespace DinnerParty
             {
                return wholePrice * 0.95M;
             }
-
             return wholePrice;
-
-
-            
-
         }
-
         public void SetPartyOptions(int people , bool fancy)
         {
             NumberOfPeople = people;
             CalculateCostOfDecorations(fancy);
         }
-
-        public int GetNumberofPeople(int people)
-        {
-            return NumberOfPeople;
-        }
-
-
     }
 }
