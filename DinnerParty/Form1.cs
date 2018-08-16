@@ -17,33 +17,31 @@ namespace DinnerParty
         {
             InitializeComponent();
 
-            dinnerparty = new DinnerParty();
-            dinnerparty.SetHealthyOption(false);
-            dinnerparty.CalculateCostOfDecorations(true);
+            dinnerparty = new DinnerParty((int)numericUpDown1.Value,healthyBox.Checked,fancyBox.Checked);
             DisplayDinnerPartyCost();
         }
 
         public void DisplayDinnerPartyCost()
         {
-            decimal Cost = dinnerparty.CalculateCost(healthyBox.Checked);
+            decimal Cost = dinnerparty.Cost;
             costLabel.Text = Cost.ToString("c");
         }
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            dinnerparty.SetPartyOptions((int)numericUpDown1.Value, fancyBox.Checked);
+            dinnerparty.NumberOfPeople =(int)numericUpDown1.Value;
             DisplayDinnerPartyCost();
         }
 
         private void fancyBox_CheckedChanged(object sender, EventArgs e)
         {
-            dinnerparty.CalculateCostOfDecorations(fancyBox.Checked);
+            dinnerparty.FancyDecorations = fancyBox.Checked;
             DisplayDinnerPartyCost();
         }
 
         private void healthyBox_CheckedChanged(object sender, EventArgs e)
         {
-            dinnerparty.SetHealthyOption(healthyBox.Checked);
+            dinnerparty.HealthyOption = healthyBox.Checked;
             DisplayDinnerPartyCost();
         }
     }

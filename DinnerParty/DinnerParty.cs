@@ -8,47 +8,59 @@ namespace DinnerParty
 {
     public class DinnerParty
     {
-        private int NumberOfPeople = 0;
-        decimal CostOfBeveragesPerPerson = 0.0M;
-        decimal CostOfDecoration = 0.0M;
         public const int CostOfFoodPerPerson = 25;
-        public void SetHealthyOption(bool healthyOption)
+        public int NumberOfPeople { get; set; }
+        public bool FancyDecorations { get; set; }
+        public bool HealthyOption { get; set; }
+        public DinnerParty(int numberOfPeople, bool healthyOption, bool fancyDecorations)
         {
-            if(healthyOption)
+            NumberOfPeople = numberOfPeople;
+            HealthyOption = healthyOption;
+            FancyDecorations = fancyDecorations;
+        }
+
+        private decimal CalculateCostOfBeveragesPerPerson()
+        {
+            decimal costOfBeveragesPerPerson;
+            if (HealthyOption)
             {
-                CostOfBeveragesPerPerson =  5.00M;
+                costOfBeveragesPerPerson = 5.00M;
             }
             else
             {
-                CostOfBeveragesPerPerson = 20.00M;
+                costOfBeveragesPerPerson = 20.00M;
 
             }
+            return costOfBeveragesPerPerson;
         }
-        public void CalculateCostOfDecorations(bool fancyOption)
+        private decimal CalculateCostOfDecorations()
         {
-            if (fancyOption)
+            decimal costOfDecorations;
+            if (FancyDecorations)
             {
-                CostOfDecoration = (NumberOfPeople * 15) + 50.0M;
+                costOfDecorations = (NumberOfPeople * 15) + 50.0M;
             }
             else
             {
-                CostOfDecoration = (NumberOfPeople * 7.50M) + 30M;
+                costOfDecorations = (NumberOfPeople * 7.50M) + 30M;
             }
+            return costOfDecorations;
         }
-        public decimal CalculateCost(bool healthyOption)
-        {
-            decimal wholePrice = CostOfDecoration + ((CostOfBeveragesPerPerson + CostOfFoodPerPerson ) * NumberOfPeople);
 
-            if (healthyOption)
-            {
-               return wholePrice * 0.95M;
-            }
-            return wholePrice;
-        }
-        public void SetPartyOptions(int people , bool fancy)
+        public decimal Cost
         {
-            NumberOfPeople = people;
-            CalculateCostOfDecorations(fancy);
+            get
+            {
+                decimal totalcost = CalculateCostOfDecorations();
+                totalcost += NumberOfPeople * (CalculateCostOfBeveragesPerPerson() + CostOfFoodPerPerson);
+                if (HealthyOption)
+                {
+                    totalcost *= 0.95M;
+                }
+                return totalcost;
+            }
         }
     }
 }
+        
+
